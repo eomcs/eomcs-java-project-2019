@@ -2,9 +2,9 @@
 
 ## 학습 목표
 
-- 다양한 유형의 값을 콘솔로 출력하는 방법
+- 다양한 유형의 값을 콘솔로 출력할 수 있다.
 
-## 실습 결과
+## 실습 소스 및 결과
 
 - src/main/java/com/eomcs/lms/App.java 변경
 - src/main/java/com/eomcs/lms/App2.java 추가
@@ -52,7 +52,7 @@ App3.java 실행 결과
 조회수: 0
 ```
 
-### 작업4) AppTest 클래스 삭제
+### 작업4) AppTest 클래스를 삭제하라.
 
 ```
 src/test/java/com/eomcs/lms/AppTest.java 삭제
