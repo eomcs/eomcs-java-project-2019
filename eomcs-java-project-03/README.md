@@ -7,6 +7,8 @@
 
 ## 실습 소스 및 결과
 
+- ~/git/eomcs-study/.gitignore (추가)
+
 `https://github.com/사용자이름/eomcs-study` 웹 페이지에 가면 `eomcs-java-project` 프로젝트가 올라가 있는 것을 보게 된다.
 
 ## 실습

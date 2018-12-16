@@ -7,9 +7,9 @@
 
 ## 실습 소스 및 결과
 
-- src/main/java/App.java 변경
-- src/main/java/App2.java 변경
-- src/main/java/App3.java 변경
+- src/main/java/com/eomcs/lms/App.java 변경
+- src/main/java/com/eomcs/lms/App2.java 변경
+- src/main/java/com/eomcs/lms/App3.java 변경
 
 ## 실습
 

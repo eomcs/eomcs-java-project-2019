@@ -8,6 +8,8 @@
 
 ## 실습 소스 및 결과
 
+- ~/git/eomcs-study/eomcs-java-project/build.gradle (변경)
+
 이클립스 IDE로 import 한 후 애플리케이션을 실행한다.
 
 ## 실습
