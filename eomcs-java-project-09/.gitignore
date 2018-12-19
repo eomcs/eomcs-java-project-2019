@@ -1,0 +1,49 @@
+# NPM 노드 모듈 폴더
+node_modules/
+
+# Visual Studio Code 설정 파일이 들어 있는 폴더
+.vscode/
+
+# Gradle이 실행할 때 사용하는 폴더
+.gradle/
+
+# 이클립스 IDE에서 사용하는 폴더
+.settings/
+
+# 자바 소스를 컴파일한 클래스 파일(.class) 파일을 두는 폴더
+bin/
+
+# gradle build를 수행한 후 생성된 폴더
+build/
+
+# J2ME 모바일 도구에서 사용하는 폴더
+.mtj.tmp/
+
+# macOS에서 폴더의 아이콘 위치나 배경 그림과 같은 정보를 저장하는 파일
+.DS_Store
+
+# 이클립스에서 프로젝트의 소스 디렉토리나 빌드 디렉토리, CLASSPATH 정보를 설정하는 파일
+.classpath
+
+# 이클립스에서 프로젝트 정보를 두는 파일
+.project
+
+# 소스 파일을 컴파일하여 생성한 클래스 파일
+*.class
+
+# 애플리케이션을 실행할 때 출력된 로그 정보를 담고 있는 파일
+*.log
+
+# BlueJ IDE에서 사용하는 파일
+*.ctxt
+
+# 파일이나 폴더를 묶어 놓은 파일
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# JVM 크래시 로그 파일
+hs_err_pid*
