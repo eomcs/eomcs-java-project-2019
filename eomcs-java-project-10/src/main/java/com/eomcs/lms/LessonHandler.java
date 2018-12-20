@@ -9,16 +9,16 @@ public class LessonHandler {
   static final int LENGTH = 10;
   static Lesson[] lessons = new Lesson[LENGTH];
   static int lessonIdx = 0;
-  
-  public static void listLesson() {
+
+  static void listLesson() {
     for (int j = 0; j < lessonIdx; j++) {
-      System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
-          lessons[j].no, lessons[j].title, lessons[j].startDate, 
+      System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n",
+          lessons[j].no, lessons[j].title, lessons[j].startDate,
           lessons[j].endDate, lessons[j].totalHours);
     }
   }
 
-  public static void addLesson() {
+  static void addLesson() {
     Lesson lesson = new Lesson();
 
     System.out.print("번호? ");
