@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'eclipse'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:26.0-jre'
+    testImplementation 'junit:junit:4.12'
+}
+
+mainClassName = 'com.eomcs.lms.App'
