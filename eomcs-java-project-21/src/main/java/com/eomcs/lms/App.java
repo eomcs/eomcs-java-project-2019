@@ -105,8 +105,16 @@ public class App {
     try {
       Stack<String> history = commandHistory.clone();
 
-      for (int i = 0; i < 10 && !history.empty(); i++) {
+      int count = 1;
+      while (!history.empty()) {
         System.out.println(history.pop());
+        
+        if (count % 5 == 0) {
+          System.out.print(":");
+          if (keyboard.nextLine().equalsIgnoreCase("q"))
+            break;
+        }
+        count++;
       }
     } catch (Exception e) {
       System.out.println("명령어 목록을 출력하는데 실패했습니다.");
