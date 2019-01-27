@@ -6,18 +6,29 @@ public class Stack<E> implements Cloneable {
   
   private static final int DEFAULT_SIZE = 10;
   
-  private E[] list;
+  private Object[] list;
   private int size = 0;
   
-  @SuppressWarnings("unchecked")
   public Stack() {
-    list = (E[]) new Object[DEFAULT_SIZE];
+    list = new Object[DEFAULT_SIZE];
   }
   
+  /*
   @SuppressWarnings("unchecked")
   @Override
   public Stack<E> clone() throws CloneNotSupportedException {
     return (Stack<E>) super.clone();
+  }
+  */
+  
+  @SuppressWarnings("unchecked")
+  @Override
+  public Stack<E> clone() {
+    Stack<E> temp = new Stack<>();
+    for (int i = 0; i < size; i++) {
+      temp.push((E) this.list[i]);
+    }
+    return temp;
   }
   
   public void push(E obj) {
@@ -31,11 +42,12 @@ public class Stack<E> implements Cloneable {
     list[size++] = obj;
   }
   
+  @SuppressWarnings("unchecked")
   public E pop() {
     if (size == 0) 
       return null;
      
-    return list[--size];
+    return (E) list[--size];
   }
 
   public int size() {
@@ -46,7 +58,7 @@ public class Stack<E> implements Cloneable {
     return size == 0;
   }
   
-  
+/*
   public static void main(String[] args) throws Exception {
     Stack<String> stack = new Stack<>();
     stack.push("aaa");
@@ -73,5 +85,5 @@ public class Stack<E> implements Cloneable {
       System.out.println(temp2.pop());
     }
   }
-  
+*/
 }
