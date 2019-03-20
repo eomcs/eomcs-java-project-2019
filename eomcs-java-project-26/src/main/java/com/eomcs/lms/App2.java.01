@@ -1,0 +1,173 @@
+package com.eomcs.lms;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.handler.BoardAddCommand;
+import com.eomcs.lms.handler.BoardDeleteCommand;
+import com.eomcs.lms.handler.BoardDetailCommand;
+import com.eomcs.lms.handler.BoardListCommand;
+import com.eomcs.lms.handler.BoardUpdateCommand;
+import com.eomcs.lms.handler.LessonAddCommand;
+import com.eomcs.lms.handler.LessonDeleteCommand;
+import com.eomcs.lms.handler.LessonDetailCommand;
+import com.eomcs.lms.handler.LessonListCommand;
+import com.eomcs.lms.handler.LessonUpdateCommand;
+import com.eomcs.lms.handler.MemberAddCommand;
+import com.eomcs.lms.handler.MemberDeleteCommand;
+import com.eomcs.lms.handler.MemberDetailCommand;
+import com.eomcs.lms.handler.MemberListCommand;
+import com.eomcs.lms.handler.MemberUpdateCommand;
+
+public class App {
+
+  static Scanner keyboard = new Scanner(System.in);
+  static Deque<String> commandHistory = new ArrayDeque<>();
+  static Queue<String> commandHistory2 = new LinkedList<>();
+
+  public static void main(String[] args) {
+
+    ArrayList<Lesson> lessonList = new ArrayList<>();
+    LessonListCommand lessonListCommand = new LessonListCommand(keyboard, lessonList);
+    LessonAddCommand lessonAddCommand = new LessonAddCommand(keyboard, lessonList);
+    LessonDetailCommand lessonDetailCommand = new LessonDetailCommand(keyboard, lessonList);
+    LessonUpdateCommand lessonUpdateCommand = new LessonUpdateCommand(keyboard, lessonList);
+    LessonDeleteCommand lessonDeleteCommand = new LessonDeleteCommand(keyboard, lessonList);
+    
+    LinkedList<Member> memberList = new LinkedList<>();
+    MemberListCommand memberListCommand = new MemberListCommand(keyboard, memberList);
+    MemberAddCommand memberAddCommand = new MemberAddCommand(keyboard, memberList);
+    MemberDetailCommand memberDetailCommand = new MemberDetailCommand(keyboard, memberList);
+    MemberUpdateCommand memberUpdateCommand = new MemberUpdateCommand(keyboard, memberList);
+    MemberDeleteCommand memberDeleteCommand = new MemberDeleteCommand(keyboard, memberList);
+    
+    ArrayList<Board> boardList1 = new ArrayList<>();
+    BoardListCommand boardListCommand = new BoardListCommand(keyboard, boardList1);
+    BoardAddCommand boardAddCommand = new BoardAddCommand(keyboard, boardList1);
+    BoardDetailCommand boardDetailCommand = new BoardDetailCommand(keyboard, boardList1);
+    BoardUpdateCommand boardUpdateCommand = new BoardUpdateCommand(keyboard, boardList1);
+    BoardDeleteCommand boardDeleteCommand = new BoardDeleteCommand(keyboard, boardList1);
+    
+    ArrayList<Board> boardList2 = new ArrayList<>();
+    BoardListCommand boardListCommand2 = new BoardListCommand(keyboard, boardList2);
+    BoardAddCommand boardAddCommand2 = new BoardAddCommand(keyboard, boardList2);
+    BoardDetailCommand boardDetailCommand2 = new BoardDetailCommand(keyboard, boardList2);
+    BoardUpdateCommand boardUpdateCommand2 = new BoardUpdateCommand(keyboard, boardList2);
+    BoardDeleteCommand boardDeleteCommand2 = new BoardDeleteCommand(keyboard, boardList2);
+
+    while (true) {
+      String command = prompt();
+
+      commandHistory.push(command);
+      commandHistory2.offer(command);
+
+      if (command.equals("/lesson/add")) {
+        lessonAddCommand.execute();
+
+      } else if (command.equals("/lesson/list")) {
+        lessonListCommand.execute();
+
+      } else if (command.equals("/lesson/detail")) {
+        lessonDetailCommand.execute();
+
+      } else if (command.equals("/lesson/update")) {
+        lessonUpdateCommand.execute();
+
+      } else if (command.equals("/lesson/delete")) {
+        lessonDeleteCommand.execute();
+
+      } else if (command.equals("/member/add")) {
+        memberAddCommand.execute();
+
+      } else if (command.equals("/member/list")) {
+        memberListCommand.execute();
+
+      } else if (command.equals("/member/detail")) {
+        memberDetailCommand.execute();
+
+      } else if (command.equals("/member/update")) {
+        memberUpdateCommand.execute();
+
+      } else if (command.equals("/member/delete")) {
+        memberDeleteCommand.execute();
+
+      } else if (command.equals("/board/add")) {
+        boardAddCommand.execute();
+
+      } else if (command.equals("/board/list")) {
+        boardListCommand.execute();
+
+      } else if (command.equals("/board/detail")) {
+        boardDetailCommand.execute();
+
+      } else if (command.equals("/board/update")) {
+        boardUpdateCommand.execute();
+
+      } else if (command.equals("/board/delete")) {
+        boardDeleteCommand.execute();
+
+      } else if (command.equals("/board2/add")) {
+        boardAddCommand2.execute();
+
+      } else if (command.equals("/board2/list")) {
+        boardListCommand2.execute();
+
+      } else if (command.equals("/board2/detail")) {
+        boardDetailCommand2.execute();
+
+      } else if (command.equals("/board2/update")) {
+        boardUpdateCommand2.execute();
+
+      } else if (command.equals("/board2/delete")) {
+        boardDeleteCommand2.execute();
+
+      } else if (command.equals("quit")) {
+        System.out.println("안녕!");
+        break;
+
+      } else if (command.equals("history")) {
+        printCommandHistory(commandHistory.iterator());
+
+      } else if (command.equals("history2")) {
+        printCommandHistory(commandHistory2.iterator());
+        
+      } else {
+        System.out.println("실행할 수 없는 명령입니다.");
+      }
+
+      System.out.println(); // 결과 출력 후 빈 줄 출력
+    }
+
+    keyboard.close();
+  }
+ 
+  private static void printCommandHistory(Iterator<String> iterator) {
+    try {
+      int count = 1;
+      while (iterator.hasNext()) {
+        System.out.println(iterator.next());
+        
+        if (count % 5 == 0) {
+          System.out.print(":");
+          if (keyboard.nextLine().equalsIgnoreCase("q"))
+            break;
+        }
+        count++;
+      }
+    } catch (Exception e) {
+      System.out.println("명령어 목록을 출력하는데 실패했습니다.");
+    }
+  }
+  
+  private static String prompt() {
+    System.out.print("명령> ");
+    return keyboard.nextLine().toLowerCase();
+  }
+}
