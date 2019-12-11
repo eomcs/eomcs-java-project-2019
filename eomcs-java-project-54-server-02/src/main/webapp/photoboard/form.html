@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>사진관리</title>
+</head>
+<body>
+    <h1>사진 입력</h1>
+    <form action="/app/photoboard/add" method="post">
+    <table border='1'>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <th>수업</th>
+            <td><input type="number" name="lessonNo"></td>
+        </tr>
+        <tr>
+            <th>사진</th>
+            <td><input type="file" name="files" multiple><br>
+            <sub>최소 한 개의 사진 파일을 등록해야 합니다.</sub> </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><button>추가</button></td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

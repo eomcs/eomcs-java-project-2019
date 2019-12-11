@@ -1,0 +1,8 @@
+package com.eomcs.context;
+
+import java.util.Map;
+
+public interface ApplicationContextListener {
+  default void contextInitialized() {}
+  default void contextDestroyed() {}
+}

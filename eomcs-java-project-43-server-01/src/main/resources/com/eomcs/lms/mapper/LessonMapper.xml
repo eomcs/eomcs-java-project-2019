@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LessonMapper">
+
+  <select id="list" resultType="com.eomcs.lms.domain.Lesson">
+    SELECT 
+      LNO as no,
+      TITLE,
+      SDT as startDate,
+      EDT as endDate,
+      TOT_HR as totalHours
+    FROM LESSON
+  </select>
+
+  <select id="detail" resultType="com.eomcs.lms.domain.Lesson" parameterType="int">
+    SELECT 
+      LNO as no,
+      TITLE,
+      CONT as contents,
+      SDT as startDate,
+      EDT as endDate,
+      TOT_HR as totalHours,
+      DAY_HR as dayHours,
+      MNO as ownerNo
+    FROM LESSON
+    WHERE LNO=#{value}
+  </select>
+  
+  <insert id="add" parameterType="com.eomcs.lms.domain.Lesson">
+    INSERT INTO LESSON(TITLE,CONT,SDT,EDT,TOT_HR,DAY_HR,MNO)
+    VALUES(#{title},#{contents},#{startDate},#{endDate},#{totalHours},#{dayHours},#{ownerNo})
+  </insert>
+  
+  <update id="update" parameterType="com.eomcs.lms.domain.Lesson">
+    UPDATE LESSON SET
+      TITLE=#{title}, 
+      CONT=#{contents}, 
+      SDT=#{startDate}, 
+      EDT=#{endDate}, 
+      TOT_HR=#{totalHours}, 
+      DAY_HR=#{dayHours}, 
+      MNO=#{ownerNo}
+    WHERE LNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM LESSON 
+    WHERE LNO=#{value}
+  </delete>
+  
+</mapper>

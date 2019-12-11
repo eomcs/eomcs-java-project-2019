@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>게시물관리</title>
+</head>
+<body>
+    <h1>게시물 입력</h1>
+    <form action="/app/board/add" method="post">
+    <table border='1'>
+        <tr>
+            <th>내용</th>
+            <td><textarea name="contents" cols="50" rows="5"></textarea></td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td><input type="number" name="writerNo"></td>
+        </tr>
+        <tr>
+            <th>수업</th>
+            <td><input type="number" name="lessonNo"></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><button>추가</button></td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

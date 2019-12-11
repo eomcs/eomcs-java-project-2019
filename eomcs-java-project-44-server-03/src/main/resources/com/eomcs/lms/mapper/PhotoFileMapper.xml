@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PhotoFileMapper">
+
+  <resultMap type="photoFile" id="photoFileMap">
+    <id column="PFNO" property="no"/>
+    <result column="PATH" property="filepath"/>
+    <result column="PNO" property="boardNo"/>
+  </resultMap>
+  
+  <sql id="listColumns">
+    PFNO, PATH, PNO
+  </sql>
+  
+  <select id="list" resultMap="photoFileMap">
+    SELECT 
+      <include refid="listColumns"/>
+    FROM PHO_FILE
+  </select>
+  
+  <select id="listByBoard" resultMap="photoFileMap" parameterType="int">
+    SELECT 
+      <include refid="listColumns"/>
+    FROM PHO_FILE
+    WHERE PNO=#{value}
+  </select>
+
+  <insert id="add" parameterType="photoFile">
+    INSERT INTO PHO_FILE(PATH,PNO) 
+    VALUES(#{filepath},#{boardNo})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM PHO_FILE 
+    WHERE PFNO=#{value}
+  </delete>
+  
+  <delete id="deleteByBoard" parameterType="int">
+    DELETE FROM PHO_FILE 
+    WHERE PNO=#{value}
+  </delete>
+  
+</mapper>

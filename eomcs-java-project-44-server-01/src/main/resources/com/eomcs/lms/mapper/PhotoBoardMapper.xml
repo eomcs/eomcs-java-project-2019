@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PhotoBoardMapper">
+
+  <select id="list" resultType="photoBoard">
+    SELECT 
+        PNO as no,
+        TITLE,
+        CDT as createdDate,
+        VIEW as viewCount,
+        LNO as lessonNo
+    FROM PHOTO
+  </select>
+
+  <select id="detail" resultType="photoBoard" parameterType="int">
+    SELECT 
+        PNO as no,
+        TITLE,
+        CDT as createdDate,
+        VIEW as viewCount,
+        LNO as lessonNo
+    FROM PHOTO 
+    WHERE PNO=#{value}
+  </select>
+  
+  <insert id="add" parameterType="photoBoard"
+          useGeneratedKeys="true" keyColumn="PNO" keyProperty="no">
+    INSERT INTO PHOTO(TITLE,LNO) 
+    VALUES(#{title},#{lessonNo})
+  </insert>
+  
+  <update id="update" parameterType="photoBoard">
+    UPDATE PHOTO SET 
+        TITLE=#{title} 
+    WHERE PNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM PHOTO 
+    WHERE PNO=#{value}
+  </delete>
+  
+</mapper>

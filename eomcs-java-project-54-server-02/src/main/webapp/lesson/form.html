@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>수업관리</title>
+</head>
+<body>
+    <h1>수업 입력</h1>
+    <form action="/app/lesson/add" method="post">
+    <table border='1'>
+        <tr>
+            <th>수업명</th>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <th>설명</th>
+            <td><textarea name="contents" rows="5" cols="50"></textarea></td>
+        </tr>
+        <tr>
+            <th>시작일</th>
+            <td><input type="date" name="startDate"></td>
+        </tr>
+        <tr>
+            <th>종료일</th>
+            <td><input type="date" name="endDate"></td>
+        </tr>
+        <tr>
+            <th>총수업시간</th>
+            <td><input type="number" name="totalHours"></td>
+        </tr>
+        <tr>
+            <th>일수업시간</th>
+            <td><input type="number" name="dayHours"></td>
+        </tr>
+        <tr>
+            <th>강사</th>
+            <td><input type="number" name="ownerNo"></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><button>추가</button></td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

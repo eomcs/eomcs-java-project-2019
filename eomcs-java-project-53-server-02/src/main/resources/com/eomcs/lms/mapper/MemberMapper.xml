@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eomcs.lms.dao.MemberDao">
+
+  <resultMap type="member" id="memberMap">
+    <id column="MNO" property="no"/>
+    <result column="NAME" property="name"/>
+    <result column="EMAIL" property="email"/>
+    <result column="PWD" property="password"/>
+    <result column="PHOTO" property="photo"/>
+    <result column="TEL" property="tel"/>
+    <result column="CDT" property="registeredDate"/>
+  </resultMap>
+  
+  <sql id="listColumns">
+    MNO, NAME, EMAIL, TEL, CDT
+  </sql>
+  
+  <sql id="detailColumns">
+    PWD, PHOTO
+  </sql>
+  
+  <select id="list" resultMap="memberMap">
+    SELECT
+      <include refid="listColumns"/>
+    FROM MEMBER
+  </select>
+  
+  <select id="search" resultMap="memberMap" parameterType="string">
+    <bind name="pattern" value="'%' + _parameter + '%'"/>
+    SELECT
+      <include refid="listColumns"/>
+    FROM MEMBER
+    WHERE NAME LIKE #{pattern} OR EMAIL LIKE #{pattern} OR TEL LIKE #{pattern}
+  </select>
+
+  <select id="detail" resultMap="memberMap" parameterType="int">
+    SELECT 
+      <include refid="listColumns"/>,<include refid="detailColumns"/>
+    FROM MEMBER 
+    WHERE MNO=#{value}
+  </select>
+  
+  <select id="detailByEmailPassword" resultMap="memberMap" parameterType="map">
+    SELECT 
+      <include refid="listColumns"/>,<include refid="detailColumns"/>
+    FROM MEMBER 
+    WHERE EMAIL=#{email} AND PWD=#{password}
+  </select>
+  
+  <insert id="add" parameterType="member">
+    INSERT INTO MEMBER(NAME,EMAIL,PWD,PHOTO,TEL) 
+    VALUES(#{name},#{email},#{password},#{photo},#{tel})
+  </insert>
+
+  <update id="update" parameterType="member">
+    UPDATE MEMBER
+      <set>
+        <if test="name != null">NAME=#{name},</if>
+        <if test="email != null">EMAIL=#{email},</if>
+        <if test="password != null">PWD=#{password},</if>
+        <if test="photo != null">PHOTO=#{photo},</if>
+        <if test="tel != null">TEL=#{tel}</if>
+      </set> 
+      WHERE MNO=#{no}
+  </update>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM MEMBER 
+    WHERE MNO=#{value}
+  </delete>
+
+</mapper>

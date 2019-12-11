@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+
+  <select id="list" resultType="member">
+    SELECT
+        MNO as no,
+        NAME,
+        EMAIL,
+        TEL,
+        CDT as registeredDate
+    FROM MEMBER
+  </select>
+  
+  <select id="search" resultType="member" parameterType="string">
+    SELECT
+        MNO as no,
+        NAME,
+        EMAIL,
+        TEL,
+        CDT as registeredDate
+    FROM MEMBER
+    WHERE NAME LIKE #{value} OR EMAIL LIKE #{value} OR TEL LIKE #{value}
+  </select>
+
+  <select id="detail" resultType="member" parameterType="int">
+    SELECT 
+        MNO as no,
+        NAME,
+        EMAIL,
+        PWD as password,
+        PHOTO,
+        TEL,
+        CDT as registeredDate
+    FROM MEMBER 
+    WHERE MNO=#{value}
+  </select>
+  
+  <select id="detailByEmailPassword" resultType="member" parameterType="map">
+    SELECT 
+        MNO as no,
+        NAME,
+        EMAIL,
+        PWD as password,
+        PHOTO,
+        TEL,
+        CDT as registeredDate
+    FROM MEMBER 
+    WHERE EMAIL=#{email} AND PWD=#{password}
+  </select>
+  
+  <insert id="add" parameterType="member">
+    INSERT INTO MEMBER(NAME,EMAIL,PWD,PHOTO,TEL) 
+    VALUES(#{name},#{email},#{password},#{photo},#{tel})
+  </insert>
+
+  <update id="update" parameterType="member">
+    UPDATE MEMBER SET 
+        NAME=#{name}, 
+        EMAIL=#{email}, 
+        PWD=#{password}, 
+        PHOTO=#{photo}, 
+        TEL=#{tel} 
+      WHERE MNO=#{no}
+  </update>
+
+  <delete id="delete" parameterType="int">
+    DELETE FROM MEMBER 
+    WHERE MNO=#{value}
+  </delete>
+
+</mapper>

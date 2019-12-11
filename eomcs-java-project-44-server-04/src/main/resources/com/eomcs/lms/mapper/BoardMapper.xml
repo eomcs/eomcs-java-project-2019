@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+
+  <resultMap type="board" id="boardMap">
+    <id column="BNO" property="no"/>
+    <result column="CONT" property="contents"/>
+    <result column="CDT" property="createdDate"/>
+    <result column="VIEW" property="viewCount"/>
+    <result column="MNO" property="writerNo"/>
+    <result column="LNO" property="lessonNo"/>
+  </resultMap>
+
+  <sql id="selectColumns">
+    BNO, CONT, CDT, VIEW, MNO, LNO
+  </sql>
+ 
+  <select id="list" resultMap="boardMap">
+    SELECT 
+      <include refid="selectColumns"/>
+    FROM BOARD
+  </select>
+
+  <select id="detail" resultMap="boardMap" parameterType="int">
+    SELECT 
+      <include refid="selectColumns"/>
+    FROM BOARD
+    WHERE BNO=#{value}
+  </select>
+  
+  <insert id="add" parameterType="board">
+    INSERT INTO BOARD(CONT,MNO,LNO) 
+    VALUES(#{contents},#{writerNo},#{lessonNo})
+  </insert>
+  
+  <update id="update" parameterType="board">
+    UPDATE BOARD SET 
+        CONT=#{contents} 
+    WHERE BNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM BOARD 
+    WHERE BNO=#{value}
+  </delete>
+  
+</mapper>

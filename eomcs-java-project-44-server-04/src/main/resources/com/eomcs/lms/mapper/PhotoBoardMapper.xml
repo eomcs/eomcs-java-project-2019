@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PhotoBoardMapper">
+
+  <resultMap type="photoBoard" id="photoBoardMap">
+    <id column="PNO" property="no"/>
+    <result column="TITLE" property="title"/>
+    <result column="CDT" property="createdDate"/>
+    <result column="VIEW" property="viewCount"/>
+    <result column="LNO" property="lessonNo"/>
+    <collection property="photos" ofType="photoFile">
+      <id column="PFNO" property="no"/>
+      <result column="PATH" property="filepath"/>
+    </collection>
+  </resultMap>
+  
+  <sql id="listColumns">
+    PNO, TITLE, CDT, VIEW, LNO
+  </sql>
+  
+  <select id="list" resultMap="photoBoardMap">
+    SELECT 
+      <include refid="listColumns"/>
+    FROM PHOTO
+  </select>
+
+  <select id="detail" resultMap="photoBoardMap" parameterType="int">
+    SELECT 
+      <include refid="listColumns"/>
+    FROM PHOTO 
+    WHERE PNO=#{value}
+  </select>
+  
+  <select id="detail2" resultMap="photoBoardMap" parameterType="int">
+    SELECT 
+      P.PNO,
+      P.TITLE,
+      P.CDT,
+      P.VIEW,
+      P.LNO,
+      PF.PFNO,
+      PF.PATH
+    FROM PHOTO P
+      LEFT OUTER JOIN PHO_FILE PF ON P.PNO=PF.PNO
+    WHERE P.PNO=#{value}
+  </select>
+  
+  <insert id="add" parameterType="photoBoard"
+          useGeneratedKeys="true" keyColumn="PNO" keyProperty="no">
+    INSERT INTO PHOTO(TITLE,LNO) 
+    VALUES(#{title},#{lessonNo})
+  </insert>
+  
+  <update id="update" parameterType="photoBoard">
+    UPDATE PHOTO SET 
+        TITLE=#{title} 
+    WHERE PNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM PHOTO 
+    WHERE PNO=#{value}
+  </delete>
+  
+</mapper>
