@@ -25,7 +25,7 @@ public class App {
 
       // 사용자가 입력한 명령을 스택에 보관한다.
       commandHistory.push(command);
-      
+
       // 사용자가 입력한 명령을 큐에 보관한다.
       commandHistory2.offer(command);
 
@@ -98,7 +98,7 @@ public class App {
 
       } else if (command.equals("history2")) {
         printCommandHistory2();
-        
+
       } else {
         System.out.println("실행할 수 없는 명령입니다.");
       }
@@ -108,7 +108,7 @@ public class App {
 
     keyboard.close();
   }
- 
+
   private static void printCommandHistory() {
     try {
       Stack<String> history = commandHistory.clone();
@@ -116,7 +116,7 @@ public class App {
       int count = 1;
       while (!history.empty()) {
         System.out.println(history.pop());
-        
+
         if (count % 5 == 0) {
           System.out.print(":");
           if (keyboard.nextLine().equalsIgnoreCase("q"))
@@ -128,7 +128,7 @@ public class App {
       System.out.println("명령어 목록을 출력하는데 실패했습니다.");
     }
   }
-  
+
   private static void printCommandHistory2() {
     try {
       Queue<String> history = commandHistory2.clone();
@@ -136,7 +136,7 @@ public class App {
       int count = 1;
       while (!history.empty()) {
         System.out.println(history.poll());
-        
+
         if (count % 5 == 0) {
           System.out.print(":");
           if (keyboard.nextLine().equalsIgnoreCase("q"))
